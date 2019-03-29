@@ -21,11 +21,9 @@ class Database:
     
     def create_admin(self):
         """Create an admin account"""
-        admin_username = "admin"  # admin username to use
-        admin_password = "admin"  # admin password to use
         self.c.execute("INSERT INTO userLoginDetails (username, password) VALUES (?, ?)", 
-                (admin_username, admin_password))
-        self.c.commit()  # Save database
+                        (self.username, self.password))
+        self.conn.commit()  # Save db changes
 
     def verify_login(self):
         pass

@@ -1,6 +1,10 @@
 """Main file where the program is run"""
 from classes.database import Database as db
 
+def main():
+    pass
+
+
 def login_screen():
     """Displays the login screen to users"""
     logged_in = False  # User is not logged in
@@ -43,5 +47,16 @@ def teacher_screen():
 def student_screen():
     pass
 
+def first_time_setup():
+    print("Thank you for using this mulitplication program.")
+    print("You will now have to create an admin account for this system.")
+    admin_username = input("Enter in your desired admin username: ")
+    admin_password = input("Enter in your desired admin password: ")
+    setup_session = db(admin_username, admin_password)
+    db.create_table(setup_session)  # Creates the userLoginDetails table for the multiplication.db
+    db.create_admin(setup_session)  # Adds the admin username and password to the userLoginDetails table
+    db.close_connection(setup_session)  # Closes the cursor and connection to db
 
-login_screen()
+
+#first_time_setup() # First time setup complete (admin has been added)
+#login_screen()
